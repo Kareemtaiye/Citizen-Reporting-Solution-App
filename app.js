@@ -7,6 +7,7 @@ import globalErrorHandler from "./middlewares/globalErrHandler.js";
 
 const app = express();
 
+app.options("*", cors()); // handle preflight for all routes
 app.use(
   cors({
     origin: "*",
@@ -14,6 +15,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
 app.use(express.json());
 
 app.use("/api/v1/auth", authRouter);
