@@ -41,10 +41,22 @@ export default class AuthService {
     const token = await TokenService.generateAccessToken({ userId: user.id });
     await SessionService.createSession({ userId: user.id, token });
 
-    return { user, token };
+    const { password: _, ...userWithoutPassword } = user;
+
+    return { user: userWithoutPassword, token };
   }
 
   static async logout(token) {
     await SessionService.deleteSession(token);
+  }
+
+  static async getUserById(userId) {
+    const user = await AuthRepository.getUserById(userId);
+    if (!user) {
+      return null; // User not found
+    }
+
+    const { password: _, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 }

@@ -1,4 +1,5 @@
 import AuthService from "../services/authService.js";
+import TokenService from "../services/tokenService.js";
 import AppError from "../utilities/AppError.js";
 
 export default class AuthController {
@@ -46,4 +47,23 @@ export default class AuthController {
     await AuthService.logout(token);
     res.status(200).json({ status: "success", message: "Logged out successfully" });
   }
+
+  //   static async protected(req, res, next) {
+  //     const token = req.headers.authorization?.split(" ")[1];
+  //     if (!token) {
+  //       return next(new AppError(401, "Authorization token is required"));
+  //     }
+
+  //     const { exp, payload } = await TokenService.verifyAccessToken(token);
+  //     // if (!exp) {
+  //     //   return next(new AppError(401, "Invalid or expired token"));
+  //     // }
+
+  //     const user = await AuthService.getUserById(payload.userId);
+  //     if (!user) {
+  //       return next(new AppError(401, "User not found"));
+  //     }
+
+  //     req.user = user;
+  //   }
 }

@@ -5,7 +5,7 @@ export default class AuthRepository {
     const query = `
     INSERT INTO users (name, email, password)
     VALUES ($1, $2, $3)
-    RETURNING name, email, id, role
+    RETURNING name, email, id, role, created_at
     `;
 
     const { rows } = await db.query(query, [name, email, password]);
@@ -20,6 +20,15 @@ export default class AuthRepository {
     //
 
     const { rows } = await db.query(query, [email]);
+    return rows[0] || null;
+  }
+
+  static async getUserById(id, db = pool) {
+    const query = `
+    SELECT id, name, email, role, created_at FROM users 
+    WHERE id = $1`;
+
+    const { rows } = await db.query(query, [id]);
     return rows[0] || null;
   }
 }

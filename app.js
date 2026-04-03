@@ -12,9 +12,9 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/reports", reportRouter);
 
+app.use(globalErrorHandler);
+
 app.use((req, res, next) => {
   res.status(404).json({ status: "fail", message: `Route ${req.originalUrl} not found` });
 });
-
-app.use(globalErrorHandler);
 export default app;
