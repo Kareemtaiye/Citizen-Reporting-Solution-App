@@ -1,6 +1,7 @@
 import pool from "../config/pg.js";
 import AuthRepository from "../repositories/authRepository.js";
 import PasswordUtils from "../utilities/passwordUtils.js";
+import SessionService from "./sessionService.js";
 import TokenService from "./tokenService.js";
 
 export default class AuthService {
