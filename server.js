@@ -8,3 +8,5 @@ const { PORT, HOST } = process.env;
 const server = app.listen(PORT, HOST, () => {
   console.log(`Report Server is running on http://${HOST}:${PORT}`);
 });
+
+export default app;
