@@ -20,6 +20,6 @@ export default class AuthRepository {
     //
 
     const { rows } = await db.query(query, [email]);
-    return rows[""] || null;
+    return rows[0] || null;
   }
 }
