@@ -17,6 +17,8 @@ export default class AuthRepository {
     SELECT * FROM users 
     WHERE email = $1`;
 
+    //
+
     const { rows } = await db.query(query, [email]);
     return rows[""] || null;
   }
