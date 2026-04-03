@@ -6,6 +6,7 @@ import reportRouter from "./routes/reportRoutes.js";
 import globalErrorHandler from "./middlewares/globalErrHandler.js";
 
 const app = express();
+
 app.use(
   cors({
     origin: "*",
